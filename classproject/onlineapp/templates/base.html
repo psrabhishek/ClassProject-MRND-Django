@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%} {% endblock%} | Mentor App</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlineapp/css/bulma.css'%}">
+    <link rel="shortcut icon" type="image/png" href="http://missionrnd.com/wp-content/uploads/2016/08/cropped-cropped-missionRDsiteLogo-32x32.png">
+</head>
+<body>
+    <!--<nav class="navbar is-primary is-bold" role="navigation" aria-label="main navigation">-->
+      <!--<div class="navbar-brand">-->
+        <!--<a class="navbar-item" href="https://bulma.io">-->
+          <!--<img src="http://missionrnd.com/wp-content/uploads/2016/02/cropped-logo.png" width="112" height="28">-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--<div id="navbarBasicExample" class="navbar-menu">-->
+        <!--<div class="navbar-end">-->
+          <!--<div class="navbar-item">-->
+            <!--<div class="is-text">-->
+              <!--<a class="button is-light">-->
+                <!--Log out-->
+              <!--</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</nav>-->
+    <section style=position:fixed;top:0;width:100%;overflow:hidden;z-index:1;" class="hero is-primary is-small is-bold">
+        <div class="hero-head">
+                <img style="margin:10px;" src="http://missionrnd.com/wp-content/uploads/2016/02/cropped-logo.png"
+                     width="150"  onclick="location='{% url 'colleges_list' %}'">
+            {% if user.is_authenticated %}
+                <a style="float:right;" class="navbar-end navbar-item has-text-white"  href="{% url 'logout' %}">
+                    Logout
+                </a>
+            {% endif%}
+        </div>
+        <div class="hero-body container title">
+        {% block heading%}{% endblock%}
+       </div>
+    </section>
+    <br/>
+    <div style="width:80%;margin:auto;margin-top:180px;margin-bottom:25px;">
+        {%block body%}
+        {%endblock%}
+    </div>
+
+</body>
+</html>

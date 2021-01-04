@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    {{title}}
+{% endblock %}
+
+{%block heading %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+    <div style="width:40%;margin:auto">
+    <form  method="post">
+        {% csrf_token %}
+
+        <div class="control field">
+            {{ form.first_name }}
+        </div>
+
+        <div class="control field">
+            {{ form.last_name }}
+        </div>
+
+        <div class="control field">
+            {{ form.username }}
+        </div>
+
+        <div class="control field">
+            {{ form.password }}
+        </div>
+
+        <div class="control field">
+            <input class="button is-link" type="submit" value="SignUp">
+        </div>
+
+        <div class="has-text-centered">
+        <p class="has-text-centered">
+            Already a member?
+            <span class="is-text has-text-link" onclick="window.location='{% url 'login'%}'">
+                Login here
+            </span>
+        </p>
+        </div>
+    </form>
+
+    <br>
+    {% if messages %}
+        <article class="message is-danger">
+            <div class="message-header">
+                <p>Error</p>
+            </div>
+            <div class="message-body">
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            </div>
+        </article>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    Colleges
+{% endblock %}
+
+{%block heading %}
+    Participating Colleges
+{% endblock %}
+
+{% block body %}
+
+    {% if 'Can add college' in user_permissions %}
+        <a  class="button is-hover is-primary" href="{% url 'add_college'%}">+ Add College</a>
+        <br/><br/>
+    {% endif%}
+
+    <table border="1px" class="table is-striped is-fullwidth is-hoverable" >
+
+        <tr>
+            <th class="has-text-centered">Acronym</th>
+            <th class="has-text-centered">Name</th>
+            {% if 'Can change college' in user_permissions and 'Can delete college' in user_permissions %}
+                <th class="has-text-centered">Actions</th>
+            {% endif%}
+        </tr>
+        {% for i in colleges_list %}
+        <tr style="cursor: pointer;">
+            <td class="is-uppercase has-text-centered" onclick="window.location='{% url 'college_details' i.id %}'">
+                {{ i.acronym }}
+            </td>
+            <td class="is-capitalized has-text-centered" onclick="window.location='{% url 'college_details' i.id %}'">
+                {{ i.name }}
+            </td>
+            {% if 'Can change college' in user_permissions and 'Can delete college' in user_permissions %}
+                <td class="has-text-centered">
+                    <span class="button is-text" onclick="window.location='{% url 'edit_college' i.id %}'" style="display:inline-block">
+                        Edit
+                    </span>
+                    <span style="display:inline-block" class="button is-text">|</span>
+                    <form style="display:inline-block" method="post" action="{% url 'del_college' i.id %}">
+                        {% csrf_token %}
+                        <input style="display:inline-block" class="button is-text" type="submit" value="Delete">
+                    </form>
+                </td>
+            {% endif%}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

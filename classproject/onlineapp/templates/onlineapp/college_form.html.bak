@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlineapp/css/bulma.css'%}">
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <div class="control field">
+            {{ form.name }}
+        </div>
+        <div class="control field">
+            {{ form.location }}
+        </div>
+        <div class="control field">
+            {{ form.acronym }}
+        </div>
+        <div class="control field">
+            {{ form.contact }}
+        </div>
+        <div class="control field">
+            <input class="button is-link" type="submit" value="Add">
+        </div>
+    </form>
+    <br>
+    {% if form.errors %}
+        <article class="message is-danger">
+            <div class="message-header">
+                <p>Error</p>
+            </div>
+            <div class="message-body">
+                {{form.errors}}
+            </div>
+        </article>
+    {% endif %}
+</body>
+</html>

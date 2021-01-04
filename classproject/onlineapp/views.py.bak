@@ -1,0 +1,31 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from onlineapp.models import *
+# Create your views here.
+
+
+def hello_world(request):
+    response = render(request, "onlineapp/hello_world.html")
+    response['bar'] = "this is a response header"
+    return response
+
+
+def gmc(request, acro):
+    name = College.objects.values('name').filter(acronym=acro)[0]['name']
+    return HttpResponse("<html><body>" + name + "</body></html>")
+
+
+def gac(request):
+    # response_str="<html><body><table border=1px> <tr> <th>Acronym</th><th>College Name</th></tr>"
+    # query = College.objects.values('acronym', 'name').order_by('acronym')
+    # for i in query:
+    #     response_str += "<tr><td>" + i['acronym'] + "</td><td>" + i['name'] + "</tr>"
+    # response_str += "</table></body></html>"
+    # return HttpResponse(response_str)
+    colleges = College.objects.values('acronym', 'name')
+    return render(request, "onlineapp/colleges_list.html", {'colleges_list': colleges})
+
+
+def gs(request, cname):
+    students = Student.objects.filter(college__acronym=cname).values('id', 'name', 'mocktest1__total')
+    return render(request, "onlineapp/student_list.html", {'student_list': students, 'college_name': cname})

@@ -1,0 +1,11 @@
+2019-06-16 09:01:41 - DEBUG - (0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+2019-06-16 09:01:41 - DEBUG - (0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+2019-06-16 09:01:41 - DEBUG - (0.003) SHOW FULL TABLES; args=None
+2019-06-16 09:01:41 - DEBUG - (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-06-16 09:01:45 - DEBUG - (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+2019-06-16 09:01:45 - DEBUG - (0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+2019-06-16 09:01:45 - DEBUG - (0.001) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`expire_date` > '2019-06-16 03:31:45.007669' AND `django_session`.`session_key` = 'n5eutft5tpma4clcoopraey0xk0tss5y'); args=('2019-06-16 03:31:45.007669', 'n5eutft5tpma4clcoopraey0xk0tss5y')
+2019-06-16 09:01:45 - DEBUG - (0.004) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 1; args=(1,)
+2019-06-16 09:01:45 - DEBUG - (0.001) SELECT `auth_permission`.`name` FROM `auth_permission` INNER JOIN `auth_user_user_permissions` ON (`auth_permission`.`id` = `auth_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_user_user_permissions`.`user_id` = 1 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,)
+2019-06-16 09:01:45 - DEBUG - (0.001) SELECT `onlineapp_college`.`id`, `onlineapp_college`.`name`, `onlineapp_college`.`acronym` FROM `onlineapp_college`; args=()
+2019-06-16 10:19:55 - DEBUG - (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None

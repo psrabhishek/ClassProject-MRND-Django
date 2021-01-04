@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ college.acronym }} Students</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlineapp/css/bulma.css'%}">
+</head>
+<body>
+    <p class="title has-text-centered">Students from {{ college.name }}</p>
+    <a  class="button is-hover" href="{% url 'add_student' college.id%}">Add</a>
+    <br>
+    <table border="1px" class="table is-striped is-fullwidth is-hoverable">
+        <tr>
+            <th class="has-text-centered">id</th>
+            <th class="has-text-centered">name</th>
+            <th class="has-text-centered">total</th>
+            <th class="has-text-centered">Action</th>
+        </tr>
+        {% for student in student_list %}
+            <tr>
+                <td onclick="window.location='{% url 'student_details' student.id %}'" class="has-text-centered">{{ student.id }}</td>
+                <td onclick="window.location='{% url 'student_details' student.id %}'" class="has-text-centered is-capitalized">{{ student.name }}</td>
+                <td onclick="window.location='{% url 'student_details' student.id %}'" class="has-text-centered">{{ student.mocktest1.total }}</td>
+                <td class="has-text-centered">
+                <span class="button is-text" onclick="window.location='{% url 'edit_student' student.id %}'" style="display:inline-block">
+                    Edit
+                </span>
+                <span style="display:inline-block" class="button is-text">|</span>
+                <form style="display:inline-block" method="post" action="{% url 'del_student' student.id %}">
+                    {% csrf_token %}
+                    <input style="display:inline-block" class="button is-text" type="submit" value="Delete">
+                </form>
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

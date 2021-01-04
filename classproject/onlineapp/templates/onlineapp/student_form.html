@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    {{title}}
+{% endblock %}
+
+{%block heading %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="control field">
+            {{ student_form.name }}
+        </div>
+        <div class="control field">
+            {{ student_form.email }}
+        </div>
+
+        <div class="control field">
+            {{ student_form.db_folder }}
+        </div>
+        <div class="control field">
+            {{ mock_form.problem1 }}
+        </div>
+        <div class="control field">
+            {{ mock_form.problem2 }}
+        </div>
+        <div class="control field">
+            {{ mock_form.problem3 }}
+        </div>
+        <div class="control field">
+            {{ mock_form.problem4 }}
+        </div>
+        <div class="control field">
+            {{ student_form.dropped_out }}
+        </div>
+        <div class="control field">
+            <input class="button is-link" type="submit" value={{button}}>
+        </div>
+    </form>
+    <br>
+    {% if studentform.errors or mock_form.errors %}
+        <article class="message is-danger">
+            <div class="message-header">
+                <p>Error</p>
+            </div>
+            <div class="message-body">
+                {{student_form.errors}}
+                {{mock_form.errors}}
+            </div>
+        </article>
+    {% endif %}
+{% endblock %}

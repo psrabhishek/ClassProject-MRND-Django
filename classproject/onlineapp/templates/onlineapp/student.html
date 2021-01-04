@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ student.name }} Details</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "onlineapp/css/bulma.css"%}">
+</head>
+<body>
+    <h2>Student Details</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <td>{{student.id}}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{student.name}}</td>
+        </tr>
+        <tr>
+            <th>DOB</th>
+            <td>{{student.dob}}</td>
+        </tr>
+        <tr>
+            <th>DB_Name</th>
+            <td>{{student.db_folder}}</td>
+        </tr>
+        <tr>
+            <th>dropped_out</th>
+            <td>{{student.dropped_out}}</td>
+        </tr>
+        <tr onclick="window.location='{% url 'college_details' student.college.id %}'">
+            <th>College</th>
+            <td>{{student.college.name}}</td>
+        </tr>
+        <tr>
+            <th>MockeTest1</th>
+            <td>{{student.mocktest1.total}}</td>
+        </tr>
+    </table>
+</body>
+</html>

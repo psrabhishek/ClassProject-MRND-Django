@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colleges</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlineapp/css/bulma.css'%}">
+
+</head>
+<body>
+    <section class="hero is-primary is-small">
+        <div class="hero-body container title">
+            Participating Colleges
+        </div>
+    </section>
+    <a  class="button is-hover" href="{% url 'add_college'%}">Add</a>
+    <br/>
+
+    <table border="1px" class="table is-striped is-fullwidth is-hoverable" >
+
+        <tr>
+            <th class="has-text-centered">Acronym</th>
+            <th class="has-text-centered">Name</th>
+            <th class="has-text-centered">Actions</th>
+        </tr>
+        {% for i in colleges_list %}
+        <tr>
+            <td class="is-uppercase has-text-centered" onclick="window.location='{% url 'college_details' i.id %}'">
+                {{ i.acronym }}
+            </td>
+            <td class="is-capitalized has-text-centered" onclick="window.location='{% url 'college_details' i.id %}'">
+                {{ i.name }}
+            </td>
+            <td class="has-text-centered">
+                <span class="button is-text" onclick="window.location='{% url 'edit_college' i.id %}'" style="display:inline-block">
+                    Edit
+                </span>
+                <span style="display:inline-block" class="button is-text">|</span>
+                <form style="display:inline-block" method="post" action="{% url 'del_college' i.id %}">
+                    {% csrf_token %}
+                    <input style="display:inline-block" class="button is-text" type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

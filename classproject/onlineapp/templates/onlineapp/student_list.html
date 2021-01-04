@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    {{ college.acronym }} Students
+{% endblock %}
+
+{%block heading %}
+    Students from {{ college.name }}{% endblock %}
+{% block body %}
+
+    {% if 'Can add student' in user_permissions %}
+        <a  class="button is-hover is-primary" href="{% url 'add_student' college.id%}">+ Add Student</a>
+        <br/><br/>
+    {% endif%}
+
+    <table border="1px" class="table is-striped is-fullwidth is-hoverable">
+        <tr>
+            <th class="has-text-centered">Id</th>
+            <th class="has-text-centered">Name</th>
+            <th class="has-text-centered">Total</th>
+            {% if 'Can change student' in user_permissions and 'Can delete student' in user_permissions %}
+                <th class="has-text-centered">Actions</th>
+            {% endif%}
+        </tr>
+        {% for student in student_list %}
+            <tr style="cursor: pointer;">
+                <td onclick="window.location='{% url 'student_details' student.id %}'" class="has-text-centered">{{ student.id }}</td>
+                <td onclick="window.location='{% url 'student_details' student.id %}'" class="has-text-centered is-capitalized">{{ student.name }}</td>
+                <td onclick="window.location='{% url 'student_details' student.id %}'" class="has-text-centered">{{ student.mocktest1.total }}</td>
+
+                {% if 'Can change student' in user_permissions and 'Can delete student' in user_permissions %}
+                    <td class="has-text-centered">
+                        <span class="button is-text" onclick="window.location='{% url 'edit_student' student.id %}'" style="display:inline-block">
+                            Edit
+                        </span>
+                        <span style="display:inline-block" class="button is-text">|</span>
+                        <form style="display:inline-block" method="post" action="{% url 'del_student' student.id %}">
+                            {% csrf_token %}
+                            <input style="display:inline-block" class="button is-text" type="submit" value="Delete">
+                        </form>
+                    </td>
+                {% endif%}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
