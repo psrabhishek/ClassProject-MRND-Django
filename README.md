@@ -23,4 +23,4 @@ Django-rest-framework was used to create rest API's for the web application. Thi
 
 ## Screenshots
 
-View the screenshots of the webapp in the [screenshots folder](https://github.com/psrabhishek/ClassProject-MRND-Django/screenshots)
+View the screenshots of the webapp in the [screenshots folder](https://github.com/psrabhishek/ClassProject-MRND-Django/tree/main/screenshots)
